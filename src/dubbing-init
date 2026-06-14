@@ -1,0 +1,167 @@
+// [YSS-FIX-BUG-C2] DubbingEngine — solo se inicializa cuando el usuario lo activa
+// Antes se iniciaba siempre, generando errores de red constantes a puertos 8020/8021/8022
+(function(){
+  try {
+    if(window.YSS._dubbingInited) return;
+    window.YSS._dubbingInited = true;
+    window.YSS._dubbingEnabled = false;
+
+    var _engineInited = false;
+
+    function initEngine(video){
+      if(!video) return;
+      if(_engineInited) return;
+
+      // [YSS-FIX-BUG-C2] Solo mutear si dubbing está realmente habilitado
+      if(window.YSS._dubbingEnabled){
+        video.muted = true;
+        video.volume = 0;
+      }
+
+      window.YSS.OllamaTranslator.loadSettings();
+
+      // [YSS-FIX-BUG-C2] Solo init XTTS/EdgeTTS/Whisper si hay config guardada
+      // Evitar llamadas de red a puertos no configurados
+      chrome.storage.sync.get(['xtts_enabled','edgetts_enabled','whisper_enabled'], function(d){
+        if(d && d.xtts_enabled)    window.YSS.XTTSClient.init();
+        if(d && d.edgetts_enabled) window.YSS.EdgeTTSClient.init();
+        if(d && d.whisper_enabled) window.YSS.WhisperClient.init();
+      });
+
+      window.YSS.DubbingEngine.init(video);
+      window.YSS.DubbingEngine.setClient('ollama', window.YSS.OllamaTranslator);
+      if(window.YSS.XTTSClient.ready)   window.YSS.DubbingEngine.setClient('xtts', window.YSS.XTTSClient);
+      if(window.YSS.EdgeTTSClient.ready) window.YSS.DubbingEngine.setClient('edgeTts', window.YSS.EdgeTTSClient);
+      if(window.YSS.WhisperClient.ready) window.YSS.DubbingEngine.setClient('whisper', window.YSS.WhisperClient);
+
+      window.YSS.EngineStatus.init();
+      _engineInited = true;
+
+      var engine  = window.YSS.DubbingEngine;
+      var overlay = window.YSS.SubtitleOverlay;
+      var ollama  = window.YSS.OllamaTranslator;
+
+      // [YSS-FIX-BUG-A2] Solo mostrar overlay de dubbing cuando dubbing está activo
+      // Evita el conflicto con el overlay de subtitle_fixer.js
+      setInterval(function(){
+        if(!window.YSS._dubbingEnabled) return;
+        // Señalizar a subtitle_fixer.js que dubbing tomó el control del overlay
+        window.YSS._dubbingOverlayActive = true;
+
+        var v = document.querySelector('video');
+        if(!v) return;
+        var subs = window.YSS.customSubs;
+        if(!subs || !subs.length) return;
+        var nowMs = v.currentTime * 1000;
+        for(var i = 0; i < subs.length; i++){
+          var sub = subs[i];
+          if(sub.time <= nowMs && nowMs < sub.time + (sub.dDurationMs || 3000)){
+            engine.onSubtitle(sub);
+            ollama.translate(sub.text).then(function(translated){
+              overlay.show(translated, 'es', sub.dDurationMs || 3000);
+            });
+            break;
+          }
+        }
+      }, 500);
+
+      console.log('[Dubbing] Engine initialized');
+    }
+
+    // [YSS-FIX-BUG-C2] pollVideo solo inicia el engine cuando dubbing está habilitado
+    // [YSS-FIX-BUG-M3] Usar MutationObserver además de setInterval para detección inmediata
+    var _mutationObserver = null;
+
+    function pollVideo(){
+      if(!window.YSS._dubbingEnabled) return; // No hacer nada si dubbing está apagado
+
+      var v = document.querySelector('video');
+      if(v){
+        if(!_engineInited){
+          initEngine(v);
+        } else if(v !== window.YSS.DubbingEngine.video){
+          window.YSS.DubbingEngine.destroy();
+          window.YSS.EngineStatus.destroy();
+          window.YSS.SubtitleOverlay.destroy();
+          window.YSS._dubbingOverlayActive = false;
+          _engineInited = false;
+          initEngine(v);
+        }
+      } else if(_engineInited){
+        window.YSS.DubbingEngine.destroy();
+        window.YSS.EngineStatus.destroy();
+        window.YSS.SubtitleOverlay.destroy();
+        window.YSS._dubbingOverlayActive = false;
+        _engineInited = false;
+      }
+    }
+
+    // [YSS-FIX-BUG-M3] MutationObserver para detección inmediata de cambio de video
+    _mutationObserver = new MutationObserver(function(){
+      if(window.YSS._dubbingEnabled) pollVideo();
+    });
+    _mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    // Polling como fallback (menos frecuente)
+    setInterval(pollVideo, 3000);
+
+    // [YSS-FIX-BUG-M4] SPA navigation — reset del engine al cambiar de video
+    document.addEventListener('yt-navigate-finish', function(){
+      if(_engineInited){
+        window.YSS.DubbingEngine.destroy();
+        window.YSS.EngineStatus.destroy();
+        window.YSS.SubtitleOverlay.destroy();
+        window.YSS._dubbingOverlayActive = false;
+        _engineInited = false;
+        console.log('[Dubbing] SPA navigation — engine reset');
+      }
+      setTimeout(pollVideo, 800); // Esperar que YouTube actualice el DOM
+    });
+
+    try {
+      chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
+        if(msg.action === 'YSS_GET_STATE'){
+          sendResponse({
+            ok: true,
+            engineState: window.YSS.DubbingEngine ? window.YSS.DubbingEngine.getState() : {},
+            dubbingMode: window.YSS.DubbingEngine ? window.YSS.DubbingEngine.mode : 'soft_dub',
+            engineInited: _engineInited,
+            dubbingEnabled: window.YSS._dubbingEnabled
+          });
+          return true;
+        }
+        if(msg.action === 'YSS_SET_MODE'){
+          var v = document.querySelector('video');
+          if(v){ v.muted = true; v.volume = 0; }
+          if(window.YSS.DubbingEngine) window.YSS.DubbingEngine.setMode(msg.mode);
+          sendResponse({ok: true});
+          return true;
+        }
+        if(msg.action === 'YSS_SET_DUBBING'){
+          window.YSS._dubbingEnabled = msg.enabled === true;
+          if(window.YSS._dubbingEnabled){
+            pollVideo(); // Iniciar inmediatamente si se activa
+          } else {
+            // Apagar dubbing: limpiar overlay y liberar control
+            window.YSS._dubbingOverlayActive = false;
+            if(window.YSS.SubtitleOverlay) window.YSS.SubtitleOverlay.clear();
+          }
+          sendResponse({ok: true});
+          return true;
+        }
+        if(msg.action === 'setVoice' && msg.name){
+          window.YSS._currentVoiceName = msg.name;
+          try { chrome.storage.sync.set({yss_voice_name: msg.name}); } catch(e){}
+          sendResponse({ok: true});
+          return true;
+        }
+      });
+    } catch(e){}
+
+    // [YSS-FIX-BUG-C2] NO llamar pollVideo() al inicio — esperar activación del usuario
+    console.log('[Dubbing] Init complete — waiting for user activation');
+
+  } catch(e) {
+    console.error('[Dubbing] Init error:', e);
+  }
+})();
