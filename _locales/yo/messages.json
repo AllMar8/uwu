@@ -1,0 +1,77 @@
+{
+   "extension_description": {
+      "message": "Ilọsiwaju iyipada awọn atunkọ ọrọ fun YouTube sinu ọrọ ohun afetigbọ nipa lilo awọn imọ-ẹrọ AI."
+   },
+   "extension_name": {
+      "message": "Speak Subtitles for YouTube"
+   },
+   "text_add_custom_lang": {
+      "message": "Fi Ede kun"
+   },
+   "text_cancel": {
+      "message": "Fagilee"
+   },
+   "text_code": {
+      "message": "Koodu"
+   },
+   "text_description": {
+      "message": "Awọn atunkọ ohun fun YouTube"
+   },
+   "text_description_small": {
+      "message": "Tumọ, kọ ẹkọ, ṣe ibaraẹnisọrọ!"
+   },
+   "text_disabled": {
+      "message": "Alaabo"
+   },
+   "text_enable_off": {
+      "message": "Pa"
+   },
+   "text_enable_on": {
+      "message": "Tan-an"
+   },
+   "text_enabled": {
+      "message": "Ti ṣiṣẹ"
+   },
+   "text_max_rate": {
+      "message": "Iyara ti o pọju"
+   },
+   "text_name": {
+      "message": "Oruko"
+   },
+   "text_pitch": {
+      "message": "ipolowo"
+   },
+   "text_rate": {
+      "message": "Iyara aiyipada"
+   },
+   "text_rate_desc": {
+      "message": "Iyara ohun"
+   },
+   "text_save": {
+      "message": "Fipamọ"
+   },
+   "text_slow_down_video": {
+      "message": "Fa fifalẹ fidio"
+   },
+   "text_speaking_control": {
+      "message": "Nigba ti ohun ti wa ni aisun"
+   },
+   "text_speed_up_voice": {
+      "message": "Mu ohun naa yara"
+   },
+   "text_subtitles": {
+      "message": "Awọn atunkọ"
+   },
+   "text_title": {
+      "message": "Agbọrọsọ atunkọ"
+   },
+   "text_translate_lang": {
+      "message": "Ede atunkọ"
+   },
+   "text_voice": {
+      "message": "Ohùn"
+   },
+   "text_volume": {
+      "message": "Iwọn didun"
+   }
+}

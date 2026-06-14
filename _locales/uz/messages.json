@@ -1,0 +1,77 @@
+{
+   "extension_description": {
+      "message": "Kengaytma YouTube uchun matn subtitrlarini Google va Microsoft AI texnologiyalari yordamida tabiiy tovushli nutqqa aylantiradi."
+   },
+   "extension_name": {
+      "message": "Speak Subtitles for YouTube"
+   },
+   "text_add_custom_lang": {
+      "message": "Til qo'shish"
+   },
+   "text_cancel": {
+      "message": "Bekor qilish"
+   },
+   "text_code": {
+      "message": "Kod"
+   },
+   "text_description": {
+      "message": "YouTube uchun ovozli subtitrlar"
+   },
+   "text_description_small": {
+      "message": "Tarjima qiling, o'rganing, muloqot qiling!"
+   },
+   "text_disabled": {
+      "message": "O'chirilgan"
+   },
+   "text_enable_off": {
+      "message": "O'chiring"
+   },
+   "text_enable_on": {
+      "message": "Yoqish"
+   },
+   "text_enabled": {
+      "message": "Yoqilgan"
+   },
+   "text_max_rate": {
+      "message": "Maksimal tezlik"
+   },
+   "text_name": {
+      "message": "Ism"
+   },
+   "text_pitch": {
+      "message": "Pitch"
+   },
+   "text_rate": {
+      "message": "Standart tezlik"
+   },
+   "text_rate_desc": {
+      "message": "Ovoz tezligi"
+   },
+   "text_save": {
+      "message": "Saqlash"
+   },
+   "text_slow_down_video": {
+      "message": "Videoni sekinlashtiring"
+   },
+   "text_speaking_control": {
+      "message": "Ovoz sekinlashganda"
+   },
+   "text_speed_up_voice": {
+      "message": "Ovozni tezlashtiring"
+   },
+   "text_subtitles": {
+      "message": "Subtitrlar"
+   },
+   "text_title": {
+      "message": "Subtitrlar karnay"
+   },
+   "text_translate_lang": {
+      "message": "Subtitrlar tili"
+   },
+   "text_voice": {
+      "message": "Ovoz"
+   },
+   "text_volume": {
+      "message": "Ovoz balandligi"
+   }
+}

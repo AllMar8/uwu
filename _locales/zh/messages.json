@@ -1,0 +1,77 @@
+{
+   "extension_description": {
+      "message": "使用由 Google 和 Microsoft AI 技術提供支持的擴展程序將 YouTube 的文本字幕轉換為聽起來自然的語音。"
+   },
+   "extension_name": {
+      "message": "Speak Subtitles for YouTube"
+   },
+   "text_add_custom_lang": {
+      "message": "添加語言"
+   },
+   "text_cancel": {
+      "message": "取消"
+   },
+   "text_code": {
+      "message": "代碼"
+   },
+   "text_description": {
+      "message": "YouTube 語音字幕"
+   },
+   "text_description_small": {
+      "message": "翻譯、學習、交流！"
+   },
+   "text_disabled": {
+      "message": "已禁用"
+   },
+   "text_enable_off": {
+      "message": "關掉"
+   },
+   "text_enable_on": {
+      "message": "打開"
+   },
+   "text_enabled": {
+      "message": "啟用"
+   },
+   "text_max_rate": {
+      "message": "最大速度"
+   },
+   "text_name": {
+      "message": "姓名"
+   },
+   "text_pitch": {
+      "message": "瀝青"
+   },
+   "text_rate": {
+      "message": "默認速度"
+   },
+   "text_rate_desc": {
+      "message": "語音速度"
+   },
+   "text_save": {
+      "message": "節省"
+   },
+   "text_slow_down_video": {
+      "message": "放慢視頻"
+   },
+   "text_speaking_control": {
+      "message": "聲音遲鈍的時候"
+   },
+   "text_speed_up_voice": {
+      "message": "加快聲音"
+   },
+   "text_subtitles": {
+      "message": "字幕"
+   },
+   "text_title": {
+      "message": "字幕音箱"
+   },
+   "text_translate_lang": {
+      "message": "字幕語言"
+   },
+   "text_voice": {
+      "message": "語音"
+   },
+   "text_volume": {
+      "message": "體積"
+   }
+}

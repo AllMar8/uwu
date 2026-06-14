@@ -1,0 +1,77 @@
+{
+   "extension_description": {
+      "message": "ایکسٹینشن یوٹیوب کے لیے ٹیکسٹ سب ٹائٹلز کو اے آئی ٹیکنالوجیز کا استعمال کرتے ہوئے قدرتی آواز والی تقریر میں تبدیل کرتی ہے۔"
+   },
+   "extension_name": {
+      "message": "Speak Subtitles for YouTube"
+   },
+   "text_add_custom_lang": {
+      "message": "زبان شامل کریں۔"
+   },
+   "text_cancel": {
+      "message": "منسوخ کریں۔"
+   },
+   "text_code": {
+      "message": "کوڈ"
+   },
+   "text_description": {
+      "message": "YouTube کے لیے صوتی سب ٹائٹلز"
+   },
+   "text_description_small": {
+      "message": "ترجمہ کریں، سیکھیں، بات چیت کریں!"
+   },
+   "text_disabled": {
+      "message": "معذور"
+   },
+   "text_enable_off": {
+      "message": "بند سوئچ"
+   },
+   "text_enable_on": {
+      "message": "پر سوئچ"
+   },
+   "text_enabled": {
+      "message": "فعال"
+   },
+   "text_max_rate": {
+      "message": "زیادہ سے زیادہ رفتار"
+   },
+   "text_name": {
+      "message": "نام"
+   },
+   "text_pitch": {
+      "message": "پچ"
+   },
+   "text_rate": {
+      "message": "پہلے سے طے شدہ رفتار"
+   },
+   "text_rate_desc": {
+      "message": "آواز کی رفتار"
+   },
+   "text_save": {
+      "message": "محفوظ کریں۔"
+   },
+   "text_slow_down_video": {
+      "message": "ویڈیو کو سست کریں۔"
+   },
+   "text_speaking_control": {
+      "message": "جب آواز پیچھے رہ جاتی ہے۔"
+   },
+   "text_speed_up_voice": {
+      "message": "آواز کو تیز کریں۔"
+   },
+   "text_subtitles": {
+      "message": "سب ٹائٹلز"
+   },
+   "text_title": {
+      "message": "سب ٹائٹلز اسپیکر"
+   },
+   "text_translate_lang": {
+      "message": "سب ٹائٹلز کی زبان"
+   },
+   "text_voice": {
+      "message": "آواز"
+   },
+   "text_volume": {
+      "message": "حجم"
+   }
+}

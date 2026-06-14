@@ -1,0 +1,77 @@
+{
+   "extension_description": {
+      "message": "Tiện ích mở rộng chuyển đổi phụ đề văn bản cho YouTube thành giọng nói có âm thanh tự nhiên bằng cách sử dụng công nghệ AI."
+   },
+   "extension_name": {
+      "message": "Speak Subtitles for YouTube"
+   },
+   "text_add_custom_lang": {
+      "message": "Thêm ngôn ngữ"
+   },
+   "text_cancel": {
+      "message": "Hủy bỏ"
+   },
+   "text_code": {
+      "message": "Mã số"
+   },
+   "text_description": {
+      "message": "Phụ đề giọng nói cho YouTube"
+   },
+   "text_description_small": {
+      "message": "Dịch, học, giao tiếp!"
+   },
+   "text_disabled": {
+      "message": "Vô hiệu hóa"
+   },
+   "text_enable_off": {
+      "message": "Tăt"
+   },
+   "text_enable_on": {
+      "message": "Bật"
+   },
+   "text_enabled": {
+      "message": "Đã bật"
+   },
+   "text_max_rate": {
+      "message": "Tốc độ tối đa"
+   },
+   "text_name": {
+      "message": "Tên"
+   },
+   "text_pitch": {
+      "message": "Độ cao"
+   },
+   "text_rate": {
+      "message": "Tốc độ mặc định"
+   },
+   "text_rate_desc": {
+      "message": "Tốc độ giọng nói"
+   },
+   "text_save": {
+      "message": "Cứu"
+   },
+   "text_slow_down_video": {
+      "message": "Làm chậm video"
+   },
+   "text_speaking_control": {
+      "message": "Khi giọng nói bị trễ"
+   },
+   "text_speed_up_voice": {
+      "message": "Tăng tốc giọng nói"
+   },
+   "text_subtitles": {
+      "message": "Phụ đề"
+   },
+   "text_title": {
+      "message": "Loa phụ đề"
+   },
+   "text_translate_lang": {
+      "message": "Ngôn ngữ phụ đề"
+   },
+   "text_voice": {
+      "message": "Tiếng nói"
+   },
+   "text_volume": {
+      "message": "Âm lượng"
+   }
+}
