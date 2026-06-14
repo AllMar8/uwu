@@ -1,0 +1,70 @@
+{
+  "action": {
+    "default_icon": "assets/icon/eva128.png",
+    "default_popup": "popup.html",
+    "default_title": "YSS Read"
+  },
+  "author": "alessb1",
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "css": ["fallback_webpage.css"],
+      "js": [
+        "content-bundle.js",
+        "ga-bundle.js",
+        "subtitles-data.js",
+        "subtitles-reader.js",
+        "subtitle_fixer.js",
+        "fallback_webpage.js",
+        "src/clients/OllamaTranslator.js",
+        "src/clients/XTTSClient.js",
+        "src/clients/EdgeTTSClient.js",
+        "src/clients/WhisperClient.js",
+        "src/engine/DubbingEngine.js",
+        "src/ui/SubtitleOverlay.js",
+        "src/ui/EngineStatus.js",
+        "src/dubbing-init.js"
+      ],
+      "matches": ["https://www.youtube.com/*"],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http://127.0.0.1:11434 http://localhost:11434 http://127.0.0.1:* http://localhost:*"
+  },
+  "default_locale": "en",
+  "description": "__MSG_extension_description__",
+  "externally_connectable": { "matches": ["https://www.youtube.com/*"] },
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "http://127.0.0.1:11434/*",
+    "http://localhost:11434/*",
+    "http://127.0.0.1:8020/*",
+    "http://localhost:8020/*",
+    "http://127.0.0.1:8021/*",
+    "http://localhost:8021/*",
+    "http://127.0.0.1:8022/*",
+    "http://localhost:8022/*"
+  ],
+  "icons": {
+    "128": "assets/icon/eva128.png",
+    "512": "assets/icon/eva512.png"
+  },
+  "manifest_version": 3,
+  "minimum_chrome_version": "88.0",
+  "name": "YSS Read",
+  "permissions": [
+    "storage",
+    "webRequest",
+    "activeTab",
+    "tts"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["message_shim.js", "voices_helper.js", "debug_probe.js"],
+      "matches": ["https://www.youtube.com/*"]
+    }
+  ],
+  "version": "1.5.0"
+}

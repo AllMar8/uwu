@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build output
+*.bundle.*.js
+dist/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local config with absolute paths
+opencode.json
+.mcp/
+
+# Environment / secrets
+.env
+.env.local
+*.pem
+
+# Extension pack
+*.crx
+*.zip
+.aider*

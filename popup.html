@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title data-lang-field="extension_name">YSS Read</title>
+    <link rel="stylesheet" href="./popup.css">
+  </head>
+  <body>
+    <div id="wrapper" role="region" aria-labelledby="popupTitle">
+
+      <!-- HEADER -->
+      <header class="header" role="banner">
+        <div class="header-left">
+          <img src="assets/icon/eva128.png" alt="YSS Read" class="header-icon"/>
+          <h3 id="popupTitle" data-lang-field="extension_name">YSS Read</h3>
+        </div>
+        <div class="header-right">
+          <span class="now-playing" id="nowPlayingText"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#888" id="x_close_thread" viewBox="0 0 16 16" class="d-none"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/></svg>
+          <label class="toggle-label">
+            <input type="checkbox" id="enable" autocomplete="off">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="donZ" title="Help"></div>
+      </header>
+
+      <!-- TAB NAV -->
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="voice">Voice</button>
+        <button class="tab-btn" data-tab="lang">Language</button>
+        <button class="tab-btn" data-tab="sync">Sync</button>
+        <button class="tab-btn" data-tab="fixes">Fixes</button>
+        <button class="tab-btn" data-tab="subs">Subs</button>
+        <button class="tab-btn" data-tab="dub">Dub</button>
+        <button class="tab-btn" data-tab="ollama">Ollama</button>
+      </nav>
+
+      <!-- CONTENT -->
+      <main class="tab-content">
+
+        <!-- ═══ VOICE ═══ -->
+        <section id="tab-voice" class="tab-panel active">
+          <div class="section">
+            <div class="section-title">Voice</div>
+            <div class="field">
+              <label class="field-label" for="speech_voice">Voice</label>
+              <select id="speech_voice" class="form-control"></select>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-title">Test</div>
+            <div class="field">
+              <input id="sample_text" class="form-control" placeholder="Hello, this is a test">
+            </div>
+            <div class="field-row">
+              <button type="button" id="btn_test_voice" class="btn">Test Voice</button>
+              <button type="button" id="btn_stop_voice" class="btn btn-danger">Stop</button>
+            </div>
+          </div>
+          <div class="section" id="range_items">
+            <div class="section-title">Parameters</div>
+            <div class="field">
+              <label class="field-label" for="pitch">Pitch</label>
+              <input type="range" id="pitch" name="pitch" min="0" max="2" step="0.05" value="1">
+            </div>
+            <div class="field">
+              <label class="field-label" for="volume">Volume</label>
+              <input type="range" id="volume" name="volume" min="0" max="1" step="0.01" value="1">
+            </div>
+            <div class="field">
+              <label class="field-label" for="rate">Rate</label>
+              <input type="range" id="rate" name="rate" min="0.1" max="2" step="0.05" value="1">
+            </div>
+            <details class="advanced-details">
+              <summary>Advanced</summary>
+              <div class="field">
+                <label class="field-label" for="max_rate">Max Rate</label>
+                <input type="range" id="max_rate" name="max_rate" min="0.1" max="2" step="0.05" value="2">
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ═══ LANGUAGE ═══ -->
+        <section id="tab-lang" class="tab-panel">
+          <div class="section">
+            <div class="section-title">Languages</div>
+            <div class="field">
+              <label class="field-label" for="translate_lang">Target Language</label>
+              <select id="translate_lang" name="select_lang" class="form-control"></select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="ui_lang">UI Lang</label>
+              <select id="ui_lang" class="form-control"></select>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-title">Custom Language</div>
+            <a href="#" id="link_custom_language">+ Add Custom Language</a>
+            <div id="add_custom_lang" class="d-none">
+              <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank" class="ext-link">ISO 639-1 codes</a>
+              <div class="field">
+                <label class="field-label" for="custom_lang_name">Name</label>
+                <input class="form-control" id="custom_lang_name" placeholder="English">
+              </div>
+              <div class="field">
+                <label class="field-label" for="custom_lang_code">Code</label>
+                <input class="form-control" id="custom_lang_code" placeholder="en">
+              </div>
+              <div class="field-row">
+                <button type="button" id="btn_custom_discard" class="btn">Close</button>
+                <button type="button" id="btn_custom_save" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ SYNC ═══ -->
+        <section id="tab-sync" class="tab-panel">
+          <div id="sync_offset_section">
+            <div class="section">
+              <div class="section-title">Sync Offset</div>
+              <div class="field">
+                <label class="field-label" for="sync_offset">Offset (ms)</label>
+                <div class="slider-group">
+                  <input type="range" id="sync_offset" name="sync_offset" min="-2000" max="2000" step="50" value="0">
+                  <span id="sync_offset_value">0ms</span>
+                </div>
+              </div>
+              <div class="hint" id="sync_offset_hint">Negative = earlier, Positive = later</div>
+            </div>
+          </div>
+          <div class="section">
+            <fieldset id="speaking_control">
+              <legend class="section-title">When voice is lagging</legend>
+              <label class="radio-field">
+                <input type="radio" name="speaking_control" value="voice" id="playingModeVoice" checked>
+                Speed up voice
+              </label>
+              <label class="radio-field">
+                <input type="radio" name="speaking_control" value="video" id="playingModeVideo">
+                Slow down video
+              </label>
+            </fieldset>
+          </div>
+        </section>
+
+        <!-- ═══ FIXES ═══ -->
+        <section id="tab-fixes" class="tab-panel">
+          <div class="section" id="names_section">
+            <div class="section-title">Pronunciation Names</div>
+            <div class="hint">Add names the TTS mispronounces.</div>
+            <div id="names_list"></div>
+            <div class="field-row">
+              <input type="text" id="new_name_input" class="form-control" placeholder="Name" style="flex:1">
+              <input type="text" id="new_name_pronunciation" class="form-control" placeholder="Pronunciation" style="flex:1">
+              <button type="button" id="btn_add_name" class="btn">Add</button>
+            </div>
+          </div>
+          <div class="section" id="translation_fixes_section">
+            <div class="section-title">Translation Fixes</div>
+            <div class="hint">Fix bad translations (e.g. "el zapato" → "Da Shu")</div>
+            <div id="translation_fixes_list"></div>
+            <div class="field-row">
+              <input type="text" id="new_bad_text" class="form-control" placeholder="Bad" style="flex:1">
+              <input type="text" id="new_fix_text" class="form-control" placeholder="Correct" style="flex:1">
+              <button type="button" id="btn_add_fix" class="btn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ SUBS ═══ -->
+        <section id="tab-subs" class="tab-panel">
+          <div class="section" id="custom_subs_section">
+            <div class="section-title">Custom Subtitles</div>
+            <div class="hint">Load subtitles from file or download from YouTube.</div>
+            <div class="field-row">
+              <input type="file" id="sub_file_input" accept=".vtt,.srt,.json" style="flex:1">
+              <button type="button" id="btn_load_sub" class="btn">Load</button>
+              <button type="button" id="btn_clear_sub" class="btn btn-danger">Clear</button>
+            </div>
+            <div class="field-row">
+              <button type="button" id="btn_download_sub" class="btn btn-primary">Download from YouTube</button>
+              <span id="download_status" class="dl-status"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ DUB ═══ -->
+        <section id="tab-dub" class="tab-panel">
+          <div id="dubbing_engine_section">
+            <div class="section">
+              <div class="section-title">Engine Status</div>
+              <div class="field">
+                <span class="status-dot idle" id="dubbing_engine_dot"></span>
+                <span id="dubbing_status">IDLE</span>
+                <span id="dubbing_mode_value" class="d-none"></span>
+              </div>
+            </div>
+            <div class="section">
+              <div class="section-title">Dub Mode</div>
+              <div class="field">
+                <select id="dubbing_mode" class="form-control">
+                  <option value="soft_dub">Soft Dub — mute video, AI voice</option>
+                  <option value="full_dub">Full Dub — replace original audio</option>
+                </select>
+              </div>
+            </div>
+            <div class="section">
+              <div class="section-title">Metrics</div>
+              <div class="stat-line"><span class="stat-key">Drift</span><span id="engine_drift" class="stat-val">0</span><span class="stat-unit">ms</span></div>
+              <div class="stat-line"><span class="stat-key">Latency</span><span id="engine_latency" class="stat-val">0</span><span class="stat-unit">ms</span></div>
+            </div>
+            <div class="section" id="engine_details">
+              <div class="section-title">Services</div>
+              <div class="stat-line" id="whisper_block"><span class="stat-key">Whisper</span><span id="engine_whisper" class="stat-val">N/A</span></div>
+              <div class="stat-line" id="ollama_block"><span class="stat-key">Ollama</span><span id="engine_ollama" class="stat-val">N/A</span></div>
+              <div class="stat-line" id="tts_block"><span class="stat-key">TTS</span><span id="engine_tts" class="stat-val">N/A</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ OLLAMA ═══ -->
+        <section id="tab-ollama" class="tab-panel">
+          <div class="section" id="ollama_section">
+            <div class="section-title">Ollama Translation</div>
+            <label class="checkbox-field">
+              <input type="checkbox" id="ollama_enabled" autocomplete="off">
+              Enable Ollama Translation
+            </label>
+            <div class="field">
+              <label class="field-label" for="ollama_model">Model</label>
+              <input type="text" id="ollama_model" class="form-control" placeholder="gemma3:4b">
+            </div>
+            <div class="field">
+              <label class="field-label" for="ollama_api_key">API Key</label>
+              <input type="text" id="ollama_api_key" class="form-control" placeholder="Leave empty if not required">
+            </div>
+            <div id="ollama_status" class="ollama-status">Ollama Translation: OFF</div>
+            <div class="field-row">
+              <button type="button" id="btn_test_ollama" class="btn">Test Ollama</button>
+            </div>
+            <div id="ollama_test_result" class="d-none" style="margin-top:8px;padding:8px;background:#f5f5f5;border-radius:4px;">
+              <div class="ollama-test-line"><span class="ollama-test-label">Original:</span> <span id="ollama_original_text" class="ollama-test-text"></span></div>
+              <div class="ollama-test-line"><span class="ollama-test-label">Improved:</span> <span id="ollama_improved_text" class="ollama-test-text"></span></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script defer src="./popup-voice-test.js"></script>
+    <script defer src="./popup-ui-lang.js"></script>
+    <script defer src="./popup-fix.js"></script>
+    <script defer src="./popup-sync.js"></script>
+    <script defer src="./popup-names.js"></script>
+    <script defer src="./popup-subs.js"></script>
+    <script defer src="./popup-ollama.js"></script>
+    <script defer src="./popup-dubbing.js"></script>
+    <script defer src="./popup-tabs.js"></script>
+    <script defer src="./popup-bootstrap.js"></script>
+  </body>
+</html>
