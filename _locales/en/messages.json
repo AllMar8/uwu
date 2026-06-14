@@ -1,0 +1,159 @@
+{
+   "extension_description": {
+      "message": "Extension convert text subtitles for YouTube into natural-sounding speech using AI technologies."
+   },
+   "extension_name": {
+      "message": "YSS Read"
+   },
+   "text_add_custom_lang": {
+      "message": "Add Language"
+   },
+   "text_cancel": {
+      "message": "Cancel"
+   },
+   "text_code": {
+      "message": "Code"
+   },
+   "text_description": {
+      "message": "Voice subtitles for YouTube"
+   },
+   "text_description_small": {
+      "message": "Translate, learn, communicate!"
+   },
+   "text_disabled": {
+      "message": "Disabled"
+   },
+   "text_enable_off": {
+      "message": "Switch Off"
+   },
+   "text_enable_on": {
+      "message": "Switch On"
+   },
+   "text_enabled": {
+      "message": "Enabled"
+   },
+   "text_max_rate": {
+      "message": "Max voice speed"
+   },
+   "text_name": {
+      "message": "Name"
+   },
+   "text_pitch": {
+      "message": "Pitch (Voice tone)"
+   },
+   "text_rate": {
+      "message": "Voice speed"
+   },
+   "text_rate_desc": {
+      "message": "Voice speed"
+   },
+   "text_save": {
+      "message": "Save"
+   },
+   "text_slow_down_video": {
+      "message": "Slow down original audio (if voice lags)"
+   },
+   "text_speaking_control": {
+      "message": "When the voice is lagging"
+   },
+   "text_speed_up_voice": {
+      "message": "Speed up synthesized voice (if it lags)"
+   },
+   "text_subtitles": {
+      "message": "Subtitles"
+   },
+   "text_title": {
+      "message": "Subtitles Speaker"
+   },
+   "text_translate_lang": {
+      "message": "Subtitles Language"
+   },
+   "text_ui_lang": {
+      "message": "UI Lang"
+   },
+   "text_voice": {
+      "message": "Voice"
+   },
+   "text_sample_text": {
+      "message": "Sample text"
+   },
+   "text_test_voice": {
+      "message": "Test Voice"
+   },
+   "text_stop": {
+      "message": "Stop"
+   },
+   "text_sync_offset": {
+      "message": "Sync Offset"
+   },
+   "text_offset_ms": {
+      "message": "Offset (ms):"
+   },
+   "text_offset_hint": {
+      "message": "Negative = earlier, Positive = later"
+   },
+   "text_pronunciation_names": {
+      "message": "Pronunciation Names"
+   },
+   "text_pronunciation_hint": {
+      "message": "Add names the TTS mispronounces. They will be kept as-is."
+   },
+   "text_add": {
+      "message": "Add"
+   },
+   "text_translation_fixes": {
+      "message": "Translation Fixes"
+   },
+   "text_translation_hint": {
+      "message": "Fix bad translations (e.g. \"el zapato\" → \"Da Shu\")"
+   },
+   "text_custom_subtitles": {
+      "message": "Custom Subtitles"
+   },
+   "text_custom_subtitles_hint": {
+      "message": "Load subtitles from file or download from YouTube video"
+   },
+   "text_load": {
+      "message": "Load"
+   },
+   "text_clear": {
+      "message": "Clear"
+   },
+   "text_download_from_youtube": {
+      "message": "Download from YouTube"
+   },
+   "text_ollama_translation": {
+      "message": "Ollama Translation"
+   },
+   "text_enable_ollama_translation": {
+      "message": "Enable Ollama Translation"
+   },
+   "text_ollama_model": {
+      "message": "Ollama Model"
+   },
+   "text_ollama_api_key": {
+      "message": "Ollama API Key (optional)"
+   },
+   "text_ollama_translation_off": {
+      "message": "Ollama Translation: OFF"
+   },
+   "text_test_ollama": {
+      "message": "Test Ollama"
+   },
+   "text_original": {
+      "message": "Original:"
+   },
+   "text_improved": {
+      "message": "Improved:"
+   },
+   "text_volume": {
+      "message": "Slow down original audio (0% = normal, 100% = slower)"
+   },
+   "text_voice_settings": {
+      "message": "Voice Parameters"
+   },
+   "text_original_audio_speed": {
+      "message": "Original Audio Speed"
+   }
+}
+
